@@ -5,7 +5,7 @@ Kelompok C2
 241511094 - Zahra Aldila 
 241511095 - Zakky Zhillan Muhammad Irsyad
 
-Manager: Djoko Cahyo
+Manager: Djoko Cahyo Utomo Lieharyani S.Kom., M.MT
 
 Target Proyek: Flappy Bird
 
