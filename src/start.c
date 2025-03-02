@@ -1,49 +1,24 @@
-#include <SDL3/SDL.h>
-#include <stdbool.h>
-#define SCREEN_WIDTH 800
-#define SCREEN_HEIGHT 600
+#include "Zakky.h"
 
-void drawButton(SDL_Renderer *renderer, SDL_FRect buttonRect, SDL_Color color) {
-    SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
-    SDL_RenderFillRect(renderer, &buttonRect);
+// Fungsi untuk membuat tombol dengan ukuran dan warna tertentu
+Button createButton(float x, float y, float w, float h, SDL_Color color) {
+    Button button;
+    button.rect.x = x;
+    button.rect.y = y;
+    button.rect.w = w;
+    button.rect.h = h;
+    button.color = color;
+    return button;
 }
 
-int main() {
-    SDL_Init(SDL_INIT_VIDEO);
-    SDL_Window *window = SDL_CreateWindow("Flappy Bird - Start", SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_RESIZABLE);
-    SDL_Renderer *renderer = SDL_CreateRenderer(window, 0);
+// Fungsi untuk menggambar tombol
+void drawButton(SDL_Renderer *renderer, Button *button) {
+    SDL_SetRenderDrawColor(renderer, button->color.r, button->color.g, button->color.b, button->color.a);
+    SDL_RenderFillRect(renderer, &button->rect);
+}
 
-    SDL_FRect startButton = {SCREEN_WIDTH / 2.0f - 100, SCREEN_HEIGHT / 2.0f - 30, 200, 60};
-    SDL_Color buttonColor = {0, 128, 255, 255};
-
-    bool running = true;
-    SDL_Event event;
-
-    while (running) {
-        while (SDL_PollEvent(&event)) {
-            if (event.type == SDL_EVENT_QUIT) {
-                running = false;
-            } else if (event.type == SDL_EVENT_MOUSE_BUTTON_DOWN) {
-                float x, y;
-                SDL_GetMouseState(&x, &y);
-                if (x >= startButton.x && x <= startButton.x + startButton.w &&
-                    y >= startButton.y && y <= startButton.y + startButton.h) {
-                    SDL_Log("Start Button Clicked!");
-                    running = false; // Gantilah dengan aksi untuk memulai game
-                }
-            }
-        }
-
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-        SDL_RenderClear(renderer);
-
-        drawButton(renderer, startButton, buttonColor);
-        
-        SDL_RenderPresent(renderer);
-    }
-
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
-    SDL_Quit();
-    return 0;
+// Fungsi untuk mengecek apakah tombol diklik
+bool isButtonClicked(Button *button, float x, float y) {
+    return (x >= button->rect.x && x <= button->rect.x + button->rect.w &&
+            y >= button->rect.y && y <= button->rect.y + button->rect.h);
 }
