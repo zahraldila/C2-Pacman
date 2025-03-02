@@ -8,9 +8,9 @@
 int circleX = 150;
 int radius = 20;
 float velocityY = 0;
-float gravity = 0.5f;      // ✅ Gravitasi lebih besar agar jatuh lebih cepat
-float jumpForce = -4.5f;   // ✅ Loncat lebih tinggi
-float maxVelocityY = -8;   // ✅ Batasi kecepatan naik agar lebih smooth
+float gravity = 0.5f;      // Gravitasi lebih besar agar jatuh lebih cepat
+float jumpForce = -4.5f;   // Loncat lebih tinggi
+float maxVelocityY = -8;   // Batasi kecepatan naik
 int gameStarted = 0;
 int historyIndex = 0;
 float circleHistory[5] = {240, 240, 240, 240, 240};
@@ -18,7 +18,7 @@ float circleY = 240;
 float pipeX = 640.0f;
 float pipeWidth = 60.0f;
 float pipeGap = 100.0f;
-float pipeSpeed = 5;    // ✅ Pipa bergerak lebih cepat agar tantangan meningkat
+float pipeSpeed = 5;    // Pipa bergerak lebih cepat
 
 
 
